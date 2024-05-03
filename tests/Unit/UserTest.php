@@ -29,26 +29,20 @@ class UserTest extends TestCase
 
         $response = $this->getJson('api/users');
 
-        $response->assertStatus(200);
-        $response->assertJsonStructure([
+        $response->assertOk()->assertJsonStructure([
             'data' => [
                 '*' => [
                     'id', 'name', 'surname', 'birth_date', 'dni', 'phone', 'email', 'gender', 'address'
                 ]
             ]
         ]);
-
-        $users->each->delete();
     }
 
     #[Test] public function show_one_user()
     {
         $user = User::factory()->create();
-        $user->birth_date->setTimezone('UTC');
 
         $response = $this->getJson("api/users/{$user->id}");
-
-        $response->assertStatus(200);
 
         $expectedData = [
             'data' => [
@@ -76,9 +70,7 @@ class UserTest extends TestCase
             ]
         ];
 
-        $response->assertJson($expectedData);
-
-        $user->delete();
+        $response->assertOk()->assertJson($expectedData);
     }
 
     #[Test] public function create_new_user()

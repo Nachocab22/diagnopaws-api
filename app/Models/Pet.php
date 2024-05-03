@@ -18,7 +18,7 @@ class Pet extends Model
     /**
      * Get the owner that owns the Pet
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
     public function owner(): BelongsTo
     {
@@ -28,7 +28,7 @@ class Pet extends Model
     /**
      * Get the breed that owns the Pet
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
     public function breed(): BelongsTo
     {

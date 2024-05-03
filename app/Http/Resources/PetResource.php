@@ -29,7 +29,8 @@ class PetResource extends JsonResource
                 'position' => $this->chip_position
             ],
             'breed' => new BreedResource($this->breed),
-            'species' => new SpeciesResource($this->breed->species)
+            'species' => new SpeciesResource($this->breed->species),
+            'owner' => $this->owner->name . ' ' . $this->owner->surname
         ];
     }
 }

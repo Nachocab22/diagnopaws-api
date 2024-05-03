@@ -34,11 +34,20 @@ class PetController extends Controller
      */
     public function store(StorePetRequest $request)
     {
-        $pet = new Pet($request->all());
-        $pet->owner()->associate(User::find($request->owner_id));
-        $pet->breed()->associate(Breed::find($request->breed_id));
-        $pet->save();
-        return new PetResource($pet);
+        $owner = User::findOrFail($request->user_id);
+        $breed = Breed::findOrFail($request->breed_id);
+        $pet = new Pet($request->validated());
+
+        try {
+            $pet->owner()->associate($owner);
+            $pet->breed()->associate($breed);
+            $pet->save();
+
+            return new PetResource($pet);
+
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Error creating pet', 'message' => $e->getMessage()], 500);
+        }
     }
 
     /**
@@ -46,7 +55,12 @@ class PetController extends Controller
      */
     public function destroy(Pet $pet)
     {
-        $pet->deleteOrFail();
+        try {
+            $pet->deleteOrFail();
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Error deleting pet'], 500);
+        }
+        return response()->json(['message' => 'Pet deleted'], 200);
     }
 
     /**
@@ -54,30 +68,12 @@ class PetController extends Controller
      */
     public function update(UpdatePetRequest $request, Pet $pet)
     {
-        $pet->name = $request->name;
-        $pet->birth_date = $request->birth_date;
-        $pet->color = $request->color;
-        $pet->sex = $request->sex;
-        $pet->chip_number = $request->chip_number;
-        $pet->chip_marking_date = $request->chip_marking_date;
-        $pet->chip_position = $request->chip_position;
-
-        $pet->save();
-
-        return new PetResource($pet);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Pet $pet)
-    {
-//        $pet->name = $request->name ?? $pet->name;
-//        $pet->birth_date = $request->birth_date ?? $pet->birth_date;
-//        $pet->color = $request->color ?? $pet->color;
-//        $pet->sex = $request->sex ?? $pet->sex;
-//        $pet->chip_number = $request->chip_number ?? $pet->chip_number;
-//        $pet->chip_marking_date = $request->chip_marking_date ?? $pet->chip_marking_date;
-//        $pet->chip_position = $request->chip_position ?? $pet->chip_position;
+        try {
+            $pet->fill($request->validated());
+            $pet->save();
+            return new PetResource($pet);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Error updating pet', 'message' => $e->getMessage()], 500);
+        }
     }
 }
