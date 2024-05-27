@@ -7,6 +7,7 @@ use Database\Seeders\SpeciesSeeder;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Testing\Fluent\AssertableJson;
+use Laravel\Sanctum\Sanctum;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 use App\Models\User;
@@ -21,6 +22,9 @@ class UserTest extends TestCase
         $this->seed(GenderSeeder::class);
         $this->seed(BreedSeeder::class);
         $this->seed(SpeciesSeeder::class);
+
+        $this->user = User::factory()->create();
+        Sanctum::actingAs($this->user);
     }
 
     #[Test] public function show_all_users()
@@ -42,7 +46,7 @@ class UserTest extends TestCase
     {
         $user = User::factory()->create();
 
-        $response = $this->getJson("api/users/{$user->id}");
+        $response = $this->getJson("api/user");
 
         $expectedData = [
             'data' => [
@@ -92,7 +96,7 @@ class UserTest extends TestCase
 
         $response->assertCreated()
                 ->assertJson(
-                    fn(AssertableJson $json) => $json->has('data')->first(
+                    fn(AssertableJson $json) => $json->has('user')->first(
                         fn(AssertableJson $json) => $json
                         ->where('name', 'Pedro')
                         ->where('surname', 'Pérez')

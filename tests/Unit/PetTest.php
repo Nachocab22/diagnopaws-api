@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 use App\Http\Resources\PetResource;
+use Laravel\Sanctum\Sanctum;
 use Tests\TestCase;
 use App\Models\Pet;
 use App\Models\User;
@@ -22,6 +23,9 @@ class PetTest extends TestCase
         $this->seed(GenderSeeder::class);
         $this->seed(BreedSeeder::class);
         $this->seed(SpeciesSeeder::class);
+
+        $this->user = User::factory()->create();
+        Sanctum::actingAs($this->user);
     }
 
     #[Test] public function show_all_pets()
@@ -72,7 +76,7 @@ class PetTest extends TestCase
         $response = $this->postJson('api/pets', $pet->toArray());
 
         $response->assertCreated()->assertJson(
-            fn(AssertableJson $json) => $json->has('data')->first(
+            fn(AssertableJson $json) => $json->has('pet')->first(
                 fn(AssertableJson $json) => $json
                     ->where('name', $pet->name)
                     ->where('birth_date', $pet->birth_date)
