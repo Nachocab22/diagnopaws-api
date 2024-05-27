@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Address;
+use Flogti\SpanishCities\Models\Town;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,11 +18,12 @@ class AddressFactory extends Factory
      */
     public function definition(): array
     {
+        $townId = Town::query()->inRandomOrder()->first()->id ?? 1;
         return [
             'street' => $this->faker->streetName,
-            'number' => $this->faker->buildingNumber,
-            'flat' => $this->faker->numberBetween(1, 20),
-            'town_id' => $this->faker->numberBetween(1, 7996),
+            'number' => (integer) $this->faker->numberBetween(1, 100),
+            'flat' => (integer) $this->faker->numberBetween(1, 20),
+            'town_id' => $townId,
         ];
     }
 }

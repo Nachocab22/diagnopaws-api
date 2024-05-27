@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('street');
             $table->integer('number');
-            $table->integer('flat')->nullable();
+            $table->string('flat')->nullable();
             $table->foreignId('town_id');
             $table->timestamps();
         });
