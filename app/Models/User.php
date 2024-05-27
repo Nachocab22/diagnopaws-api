@@ -7,12 +7,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, HasRoles;
 
     protected $fillable = ['name', 'surname', 'birth_date', 'dni', 'phone', 'email', 'password'];
     protected $hidden = ['password', 'remember_token'];
@@ -33,7 +34,7 @@ class User extends Authenticatable
     }
 
     /**
-     * Get all of the pets for the User
+     * Get all the pets for the User
      *
      * @return HasMany
      */
