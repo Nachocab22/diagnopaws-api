@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\BreedResource;
 use App\Http\Resources\SpeciesResource;
+use Illuminate\Support\Facades\Storage;
 
 class PetResource extends JsonResource
 {
@@ -30,7 +31,8 @@ class PetResource extends JsonResource
             ],
             'breed' => new BreedResource($this->breed),
             'species' => new SpeciesResource($this->breed->species),
-            'owner' => $this->owner->name . ' ' . $this->owner->surname
+            'owner' => $this->owner->name . ' ' . $this->owner->surname,
+            'image' => $this->image ? url('storage/' . $this->image) : null
         ];
     }
 }
