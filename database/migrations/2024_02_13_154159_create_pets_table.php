@@ -22,6 +22,8 @@ return new class extends Migration
             $table->date('chip_marking_date')->nullable()->default(null);
             $table->string('chip_position')->nullable()->default(null);
 
+            $table->string('image')->nullable()->default(null);
+
             $table->timestamps();
         });
     }
