@@ -30,7 +30,6 @@ class StoreUserRequest extends FormRequest
             'surname' => 'required|string|max:255',
             'birth_date' => 'required|date',
             'dni' => 'required|string|max:9',
-            'phone' => 'string|max:20',
             'email' => 'required|email|max:255|unique:users,email',
             'password' => 'required|string|min:8|max:255',
             'gender_id' => 'required|exists:genders,id',
@@ -38,20 +37,20 @@ class StoreUserRequest extends FormRequest
         ];
     }
 
-    public function messages()
+    public function messages(): array
     {
         return [
-            'name.required' => 'Name is required.',
-            'surname.required' => 'Surname is required.',
-            'birth_date.required' => 'Birth date is required.',
-            'dni.required' => 'DNI is required.',
-            'email.unique' => 'The email has already been taken.',
-            'email.required' => 'Email is required.',
-            'email.email' => 'Email must be a valid email address.',
-            'password.required' => 'Password is required.',
-            'password.min' => 'Password must be at least 8 characters.',
-            'gender_id.required' => 'Gender is required.',
-            'address_id.required' => 'Address is required.',
+            'name.required' => 'El nombre es obligatorio.',
+            'surname.required' => 'El apellido es obligatorio.',
+            'birth_date.required' => 'La fecha de nacimiento es obligatoria.',
+            'dni.required' => 'El campo DNI es obligatorio.',
+            'email.unique' => 'Este email ya esta en uso.',
+            'email.required' => 'El email es obligatorio.',
+            'email.email' => 'El email debe ser con el formato correcto.',
+            'password.required' => 'La contraseña es obligatoria.',
+            'password.min' => 'La contraseña debe tener mas de 8 caracteres.',
+            'gender_id.required' => 'Indique su género.',
+            'address_id.required' => 'Introduzca una dirección.',
         ];
     }
 
