@@ -20,6 +20,5 @@ class SpeciesSeeder extends Seeder
         Species::create(['name' => 'Roedor']);
         Species::create(['name' => 'Pez']);
         Species::create(['name' => 'Caballo']);
-        Species::create(['name' => 'Otro']);
     }
 }
