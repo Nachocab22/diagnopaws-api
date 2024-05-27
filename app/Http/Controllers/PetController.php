@@ -9,14 +9,15 @@ use App\Models\Pet;
 use App\Models\User;
 use App\Models\Breed;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class PetController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
+    public function index() {
         $pets = Pet::all();
         return PetResource::collection($pets);
     }
@@ -34,16 +35,27 @@ class PetController extends Controller
      */
     public function store(StorePetRequest $request)
     {
-        $owner = User::findOrFail($request->user_id);
-        $breed = Breed::findOrFail($request->breed_id);
-        $pet = new Pet($request->validated());
-
         try {
+            $pet = new Pet();
+            $pet->fill($request->only(['name', 'birth_date', 'color', 'chip_number', 'chip_marking_date', 'chip_position', 'sex']));
+
+            $owner = User::find($request->user_id);
+            $breed = Breed::find($request->breed_id);
+
+            if (!$owner || !$breed) {
+                return response()->json(['message' => 'Invalid owner or breed provided'], 400);
+            }
+
+            if ($request->hasFile('image')) {
+                $imagePath = $request->file('image')->store('pets', 'public');
+                $pet->image = $imagePath;
+            }
+
             $pet->owner()->associate($owner);
             $pet->breed()->associate($breed);
-            $pet->save();
 
-            return new PetResource($pet);
+            $pet->save();
+            return response()->json(['pet' => new PetResource($pet)], 201);
 
         } catch (\Exception $e) {
             return response()->json(['error' => 'Error creating pet', 'message' => $e->getMessage()], 500);
@@ -75,5 +87,14 @@ class PetController extends Controller
         } catch (\Exception $e) {
             return response()->json(['error' => 'Error updating pet', 'message' => $e->getMessage()], 500);
         }
+    }
+
+    /**
+     * Display the pets of the specified user.
+     */
+    public function userPets()
+    {
+        $pets = Auth::user()->pets;
+        return response()->json(['pets' => PetResource::collection($pets)], 200);
     }
 }

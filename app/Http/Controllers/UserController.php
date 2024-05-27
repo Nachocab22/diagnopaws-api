@@ -3,19 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUserRequest;
-use App\Http\Requests\UpdateUserRequest;
+use App\Http\Resources\PetResource;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use App\Models\Gender;
 use App\Models\Address;
 use App\Models\Pet;
-use Auth;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
 use Throwable;
 
 class UserController extends Controller
@@ -44,6 +44,19 @@ class UserController extends Controller
     }
 
     /**
+     * Display the pets of the specified resource.
+     *
+     * @param User $user
+     *
+     * @return JsonResponse
+     */
+    public function showPets()
+    {
+        $pets = Auth::user()->pets();
+        return response()->json(['pets' => PetResource::collection($pets)], 200);
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param StoreUserRequest $request
@@ -52,32 +65,26 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
-        $user = new User();
-        $user->fill($request->only(['name', 'surname', 'birth_date', 'dni', 'phone', 'email']));
-        $user->password = Hash::make($request->password);
+        try{
+            $user = new User();
+            $user->fill($request->only(['name', 'surname', 'birth_date', 'dni', 'phone', 'email']));
+            $user->password = Hash::make($request->password);
 
-        $gender = Gender::find($request->gender_id);
-        $address = Address::find($request->address_id);
+            $gender = Gender::find($request->gender_id);
+            $address = Address::find($request->address_id);
 
-        if (!$gender || !$address) {
-            return response()->json(['message' => 'Invalid gender or address provided'], 400);
-        }
-
-        $user->gender()->associate($gender);
-        $user->address()->associate($address);
-
-        if ($request->has('pets')) {
-            foreach ($request->pets as $petId) {
-                $pet = Pet::find($petId);
-                if ($pet) {
-                    $user->pets()->save($pet);
-                }
+            if (!$gender || !$address) {
+                return response()->json(['message' => 'Invalid gender or address provided'], 400);
             }
+
+            $user->gender()->associate($gender);
+            $user->address()->associate($address);
+
+            $user->save();
+            return response()->json(['user' => new UserResource($user)], 201);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Error creating user', 'error' => $e->getMessage()], 500);
         }
-
-        $user->save();
-
-        return new UserResource($user);
     }
 
     /**
@@ -95,17 +102,25 @@ class UserController extends Controller
 
     public function login(Request $request)
     {
-
         $validatedData = $request->validate([
             'email' => 'required|email',
             'password' => 'required'
         ]);
 
-        if (!Auth::attempt($validatedData)) {
+        if (Auth::attempt($validatedData)) {
+            $request->session()->regenerate();
+            $user = Auth::user();
+
+            return response()
+                ->json(['message' => 'Logged in', 'user' => new UserResource($user)], 200);
+        } else {
             return response()->json(['message' => 'Invalid credentials'], 401);
         }
+    }
 
-        return response()->json(['message' => 'Logged in', 'user' => Auth::user()], 200);
-        //TODO: Añadir cookies con el token cuando se llegue a esa parte
+    public function logout(Request $request) {
+        $user = Auth::user();
+        return response()
+            ->json(['message' => 'Logged out'], 200);
     }
 }

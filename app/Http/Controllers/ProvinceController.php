@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreProvinceRequest;
 use App\Http\Requests\UpdateProvinceRequest;
 use App\Http\Resources\ProvinceResource;
-use App\Models\Province;
+use Flogti\SpanishCities\Models\Province;
+use Illuminate\Routing\Controller;
 
 class ProvinceController extends Controller
 {

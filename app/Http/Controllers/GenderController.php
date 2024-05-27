@@ -6,6 +6,7 @@ use App\Http\Requests\StoreGenderRequest;
 use App\Http\Requests\UpdateGenderRequest;
 use App\Http\Resources\GenderResource;
 use App\Models\Gender;
+use Illuminate\Routing\Controller;
 
 class GenderController extends Controller
 {

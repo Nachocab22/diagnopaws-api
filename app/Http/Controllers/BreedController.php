@@ -6,6 +6,7 @@ use App\Http\Requests\StoreBreedRequest;
 use App\Http\Requests\UpdateBreedRequest;
 use App\Http\Resources\BreedResource;
 use App\Models\Breed;
+use Illuminate\Routing\Controller;
 
 class BreedController extends Controller
 {

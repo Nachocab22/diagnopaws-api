@@ -6,6 +6,7 @@ use App\Http\Requests\StoreSpeciesRequest;
 use App\Http\Requests\UpdateSpeciesRequest;
 use App\Http\Resources\SpeciesResource;
 use App\Models\Species;
+use Illuminate\Routing\Controller;
 
 class SpeciesController extends Controller
 {

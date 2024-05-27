@@ -16,7 +16,7 @@ class StorePetRequest extends FormRequest
         return true;
         //En este caso deberian poder añadir nuevas mascotas:
         // 1. desde el panel de administración cualquier usuario con rol de veterinario
-        // 2. desde el panel de administración cualquier usuario con rol de usuario
+        // 2. cualquier usuario con rol de usuario
     }
 
     /**
@@ -31,11 +31,12 @@ class StorePetRequest extends FormRequest
             'birth_date' => 'required|date',
             'color' => 'required|string|max:255',
             'sex' => ['required', 'in:Male,Female'],
-            'chip_number' => 'required|string|max:255|unique:App\Models\Pet,chip_number',
-            'chip_marking_date' => 'required|date',
-            'chip_position' => 'required|string|max:255',
+            'chip_number' => 'nullable|string|max:255|unique:App\Models\Pet,chip_number',
+            'chip_marking_date' => 'nullable|date',
+            'chip_position' => 'nullable|string|max:255',
             'user_id' => 'required|integer|exists:App\Models\User,id',
-            'breed_id' => 'required|integer|exists:App\Models\Breed,id'
+            'breed_id' => 'required|integer|exists:App\Models\Breed,id',
+            'image' => 'nullable|image|mimes:jpeg,png,svg|max:2048',
         ];
     }
 }
