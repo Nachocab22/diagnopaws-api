@@ -13,7 +13,7 @@ class Pet extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'birth_date', 'color', 'sex', 'chip_number', 'chip_marking_date', 'chip_position'];
+    protected $fillable = ['name', 'birth_date', 'color', 'sex', 'chip_number', 'chip_marking_date', 'chip_position', 'image'];
 
     /**
      * Get the owner that owns the Pet
