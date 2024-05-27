@@ -13,7 +13,7 @@ class Address extends Model
 {
     use HasFactory, HasTown;
 
-    protected $fillable = ['street', 'number'];
+    protected $fillable = ['street', 'number', 'flat', 'town_id'];
 
     /**
      * Get all the tenants for the Address
