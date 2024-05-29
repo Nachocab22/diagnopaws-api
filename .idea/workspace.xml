@@ -6,13 +6,34 @@
   <component name="ChangeListManager">
     <list default="true" id="cc343e24-2e80-482b-b679-9f6e1f03ff93" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/blade.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/blade.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Gender.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Gender.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PetController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PetController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/VaccinationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/VaccinationController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/VaccineController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/VaccineController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/StorePetRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/StorePetRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/StoreUserRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/StoreUserRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/StoreVaccinationRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/StoreVaccinationRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/StoreVaccineRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/StoreVaccineRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/UpdatePetRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/UpdatePetRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/UpdateVaccinationRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/UpdateVaccinationRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/UpdateVaccineRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/UpdateVaccineRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/PetResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/PetResource.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Pet.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Pet.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Species.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Species.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Vaccine.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Vaccine.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bootstrap/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/bootstrap/app.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/cors.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/cors.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/sanctum.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/sanctum.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/session.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/session.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/factories/VaccinationFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/VaccinationFactory.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2024_02_15_112307_create_vaccination_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2024_02_15_112307_create_vaccinations_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2024_02_15_112308_create_vaccine_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2024_02_15_112308_create_vaccines_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2024_02_15_112309_add_vaccine_to_vaccination.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2024_02_15_112309_add_vaccine_to_vaccination.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeders/RolesAndPermissionsSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/RolesAndPermissionsSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeders/VaccineSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/VaccineSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +52,7 @@
       <server host="127.0.0.1" id="27274974-1088-459d-9f10-0a110274f2b4" name="127.0.0.1" port="8000" />
     </servers>
   </component>
+  <component name="PhpWebServerValidation" path_to_validation_script="$PROJECT_DIR$/public" selected_validation_type="LOCAL" web_path_to_validation_script="http://localhost" />
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="/opt/homebrew/Cellar/php/8.3.0/bin/php">
     <include_path>
       <path value="$PROJECT_DIR$/vendor/brick/math" />
@@ -184,8 +206,13 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.language&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.MySQL, MariaDB&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
+      &quot;TEXT&quot;
+    ]
   }
 }</component>
   <component name="RunManager" selected="PHPUnit.UserTest">
@@ -249,6 +276,8 @@
       <workItem from="1716479851717" duration="114000" />
       <workItem from="1716479988756" duration="1367000" />
       <workItem from="1716814508786" duration="10278000" />
+      <workItem from="1716888036623" duration="15126000" />
+      <workItem from="1716911127319" duration="17596000" />
     </task>
     <servers />
   </component>
@@ -256,6 +285,20 @@
     <option name="version" value="3" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Http/Request.php</url>
+          <line>563</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/app/Http/Controllers/PetController.php</url>
+          <line>38</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <watches-manager>
       <configuration name="phpunit">
         <watch expression="$response-&gt;baseResponse-&gt;content()" language="PHP" />
