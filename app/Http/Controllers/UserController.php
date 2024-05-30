@@ -3,19 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\Http\Resources\PetResource;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use App\Models\Gender;
 use App\Models\Address;
-use App\Models\Pet;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Cookie;
 use Throwable;
 
 class UserController extends Controller
@@ -79,6 +78,7 @@ class UserController extends Controller
 
             $user->gender()->associate($gender);
             $user->address()->associate($address);
+            $user->assignRole('owner');
 
             $user->save();
             return response()->json(['user' => new UserResource($user)], 201);
@@ -88,16 +88,59 @@ class UserController extends Controller
     }
 
     /**
+     * Update the specified resource in storage.
+     *
+     * @param UpdateUserRequest $request
+     * @param User $user
+     *
+     * @return JsonResponse
+     */
+    public function update(UpdateUserRequest $request, User $user)
+    {
+        try {
+            $user->fill($request->validated());
+            $user->save();
+            return response()->json(['user' => new UserResource($user)], 200);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Error updating user', 'error' => $e->getMessage()], 500);
+        }
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param UpdateUserRequest $request
+     *
+     * @return JsonResponse
+     */
+    public function updateProfile(UpdateUserRequest $request)
+    {
+        try {
+            $user = Auth::user();
+            $user->fill($request->validated());
+            $user->save();
+            return response()->json(['user' => new UserResource($user)], 200);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Error updating user', 'error' => $e->getMessage()], 500);
+        }
+    }
+
+    /**
      * Remove the specified resource from storage.
      *
      * @param User $user
      *
-     * @return void
+     * @return JsonResponse
      * @throws Throwable
      */
     public function destroy(User $user)
     {
-        $user->deleteOrFail();
+        try {
+            $user->delete();
+            return response()->json(['message' => 'User deleted'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Error deleting user', 'error' => $e->getMessage()], 500);
+        }
     }
 
     public function login(Request $request)
@@ -109,8 +152,8 @@ class UserController extends Controller
 
         if (Auth::attempt($validatedData)) {
             $request->session()->regenerate();
-            $user = Auth::user();
 
+            $user = Auth::user();
             return response()
                 ->json(['message' => 'Logged in', 'user' => new UserResource($user)], 200);
         } else {
@@ -119,8 +162,27 @@ class UserController extends Controller
     }
 
     public function logout(Request $request) {
-        $user = Auth::user();
+        Auth::user()->tokens()->delete();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
         return response()
             ->json(['message' => 'Logged out'], 200);
+    }
+
+    /**
+     * Search for a user or pet by name or dni.
+     *
+     * @param Request $request
+     *
+     * @return JsonResponse
+     */
+    public function search($query)
+    {
+        $users = User::where('name','like', "%$query%")
+            ->orWhere('surname', 'like', "%$query%")
+            ->orWhere('dni', 'like', "%$query%")
+            ->get();
+
+        return response()->json(['users' => UserResource::collection($users)], 200);
     }
 }
