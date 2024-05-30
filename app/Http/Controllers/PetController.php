@@ -68,11 +68,11 @@ class PetController extends Controller
     public function destroy(Pet $pet)
     {
         try {
-            $pet->deleteOrFail();
+            $pet->delete();
+            return response()->json(['message' => 'Pet deleted'], 200);
         } catch (\Exception $e) {
             return response()->json(['error' => 'Error deleting pet'], 500);
         }
-        return response()->json(['message' => 'Pet deleted'], 200);
     }
 
     /**
@@ -83,7 +83,7 @@ class PetController extends Controller
         try {
             $pet->fill($request->validated());
             $pet->save();
-            return new PetResource($pet);
+            return response()->json(['pet' => new PetResource($pet)], 200);
         } catch (\Exception $e) {
             return response()->json(['error' => 'Error updating pet', 'message' => $e->getMessage()], 500);
         }
@@ -95,6 +95,21 @@ class PetController extends Controller
     public function userPets()
     {
         $pets = Auth::user()->pets;
+        return response()->json(['pets' => PetResource::collection($pets)], 200);
+    }
+
+    /**
+     * Display a list of filtered pets
+     */
+    public function search($query)
+    {
+        $pets = Pet::where('name', 'like', "%$query%")
+            ->orWhereHas('owner', function($q) use ($query) {
+                $q->where('name', 'like', "%$query%")
+                    ->orWhere('dni', 'like', "%$query%");
+            })
+            ->get();
+
         return response()->json(['pets' => PetResource::collection($pets)], 200);
     }
 }
