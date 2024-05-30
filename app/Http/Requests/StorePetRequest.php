@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 use App\Enums\SexEnum;
+use Illuminate\Support\Facades\Auth;
 
 class StorePetRequest extends FormRequest
 {
@@ -13,10 +14,7 @@ class StorePetRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
-        //En este caso deberian poder añadir nuevas mascotas:
-        // 1. desde el panel de administración cualquier usuario con rol de veterinario
-        // 2. cualquier usuario con rol de usuario
+        return Auth::user()->can('create pet');
     }
 
     /**

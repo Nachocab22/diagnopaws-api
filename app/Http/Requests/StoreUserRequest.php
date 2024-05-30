@@ -16,11 +16,7 @@ class StoreUserRequest extends FormRequest
         if($this->isMethod('post') && $this->route()->named('register')) {
             return true;
         }
-        return true;
-        //En este caso deberian poder añadir nuevos usuarios:
-        // 1. desde el registro cualquier usuario
-        // 2. desde el panel de administración cualquier usuario con rol de administrador
-        // 3. desde el panel de administración cualquier usuario con rol de veterinario
+        return auth()->user()->can('create user');
     }
 
     public function rules(): array
