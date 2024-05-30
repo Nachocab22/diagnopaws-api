@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Species extends Model
 {
@@ -12,9 +13,9 @@ class Species extends Model
     protected $fillable = ['name'];
 
     /**
-     * Get all of the breeds for the Species
+     * Get all the breeds for the Species
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
     public function breeds(): HasMany
     {
