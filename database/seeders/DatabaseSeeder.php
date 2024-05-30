@@ -15,6 +15,8 @@ class DatabaseSeeder extends Seeder
             GenderSeeder::class,
             SpeciesSeeder::class,
             BreedSeeder::class,
+            VaccineSeeder::class,
+            RolesAndPermissionsSeeder::class,
         ]);
     }
 }

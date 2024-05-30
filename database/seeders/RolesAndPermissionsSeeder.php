@@ -19,20 +19,36 @@ class RolesAndPermissionsSeeder extends Seeder
         app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
 
         // Create permissions
-        Permission::create(['name' => 'manage users']);
-        Permission::create(['name' => 'edit articles']);
-        Permission::create(['name' => 'delete articles']);
+        Permission::create(['name' => 'create vaccination']);
+        Permission::create(['name' => 'read vaccination']);
+        Permission::create(['name' => 'update vaccination']);
+        Permission::create(['name' => 'delete vaccination']);
+
+        Permission::create(['name' => 'create pet']);
+        Permission::create(['name' => 'read pet']);
+        Permission::create(['name' => 'update pet']);
+        Permission::create(['name' => 'delete pet']);
+
+        Permission::create(['name' => 'create user']);
+        Permission::create(['name' => 'read user']);
+        Permission::create(['name' => 'update user']);
+        Permission::create(['name' => 'delete user']);
+
+        Permission::create(['name' => 'create address']);
+        Permission::create(['name' => 'read address']);
+        Permission::create(['name' => 'update address']);
+        Permission::create(['name' => 'delete address']);
+
+        Permission::create(['name' => 'create vaccines']);
 
         // Create roles and assign existing permissions
-        $role = Role::create(['name' => 'admin']);
-        $role->givePermissionTo('manage users');
-        $role->givePermissionTo('edit articles');
-        $role->givePermissionTo('delete articles');
+        $adminRole = Role::create(['name' => 'admin']);
+        $adminRole->givePermissionTo(Permission::all());
 
-        $role = Role::create(['name' => 'vet']);
-        $role->givePermissionTo('edit articles');
+        $vetRole = Role::create(['name' => 'vet']);
+        $vetRole->givePermissionTo(['create vaccination', 'read vaccination', 'update vaccination', 'delete vaccination', 'create pet', 'read pet', 'update pet', 'delete pet', 'create user', 'read user', 'update user', 'delete user', 'create vaccines']);
 
-        $role = Role::create(['name' => 'owner']);
-        // No permissions given to viewer
+        $ownerRole = Role::create(['name' => 'owner']);
+        $ownerRole->givePermissionTo(['create pet', 'read pet', 'update pet', 'delete pet', 'read user', 'update user']);
     }
 }
