@@ -10,7 +10,7 @@ class Vaccine extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'manufacturer', 'sickness_treated'];
+    protected $fillable = ['name', 'manufacturer', 'sicknesses_treated'];
 
     public function vaccinations(): HasMany
     {
