@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class StoreVaccinationRequest extends FormRequest
 {
@@ -11,18 +13,22 @@ class StoreVaccinationRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+         return Auth::user()->can('create vaccination');
     }
 
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     * @return array<string, ValidationRule|array|string>
      */
     public function rules(): array
     {
         return [
-            //
+            'vaccination_date' => 'required|date',
+            'next_vaccination_date' => 'required|date',
+            'lot_number' => 'nullable|string',
+            'pet_id' => 'required|exists:pets,id',
+            'vaccine_id' => 'required|exists:vaccines,id',
         ];
     }
 }
