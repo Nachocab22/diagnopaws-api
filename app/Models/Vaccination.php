@@ -11,7 +11,7 @@ class Vaccination extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['vaccination_date', 'next_vaccination_date', 'lot_number', 'pet_id'];
+    protected $fillable = ['vaccination_date', 'next_vaccination_date', 'lot_number', 'pet_id', 'vaccine_id'];
 
 /**
      * Get the pet that owns the Vaccination
