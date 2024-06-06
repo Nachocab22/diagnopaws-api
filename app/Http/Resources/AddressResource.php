@@ -18,7 +18,7 @@ class AddressResource extends JsonResource
             'id' => $this->id,
             'street' => $this->street,
             'number' => (integer) $this->number,
-            'flat' => (integer) $this->flat,
+            'flat' => $this->flat,
             'town' => new TownResource($this->town)
         ];
     }
