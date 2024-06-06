@@ -39,16 +39,17 @@ class RolesAndPermissionsSeeder extends Seeder
         Permission::create(['name' => 'update address']);
         Permission::create(['name' => 'delete address']);
 
-        Permission::create(['name' => 'create vaccines']);
+        Permission::create(['name' => 'read vaccine']);
+        Permission::create(['name' => 'create vaccine']);
 
         // Create roles and assign existing permissions
         $adminRole = Role::create(['name' => 'admin']);
-        $adminRole->givePermissionTo(Permission::all());
+        $adminRole->givePermissionTo(['create vaccination', 'read vaccination', 'update vaccination', 'delete vaccination', 'create pet', 'read pet', 'update pet', 'delete pet', 'create user', 'read user', 'update user', 'delete user', 'create vaccine', 'read vaccine', 'create address', 'read address', 'update address', 'delete address',]);
 
         $vetRole = Role::create(['name' => 'vet']);
-        $vetRole->givePermissionTo(['create vaccination', 'read vaccination', 'update vaccination', 'delete vaccination', 'create pet', 'read pet', 'update pet', 'delete pet', 'create user', 'read user', 'update user', 'delete user', 'create vaccines']);
+        $vetRole->givePermissionTo(['create vaccination', 'read vaccination', 'update vaccination', 'delete vaccination', 'create pet', 'read pet', 'update pet', 'delete pet', 'create user', 'read user', 'update user', 'delete user', 'read vaccine', 'create address', 'read address', 'update address', 'delete address']);
 
         $ownerRole = Role::create(['name' => 'owner']);
-        $ownerRole->givePermissionTo(['create pet', 'read pet', 'update pet', 'delete pet', 'read user', 'update user']);
+        $ownerRole->givePermissionTo(['create pet', 'read pet', 'update pet', 'delete pet', 'read user', 'update user', 'create address', 'read address', 'update address', 'read vaccination']);
     }
 }
