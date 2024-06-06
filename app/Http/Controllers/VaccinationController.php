@@ -17,8 +17,17 @@ class VaccinationController
     public function index()
     {
         $vaccinations = Vaccination::all();
-        return VaccinationResource::collection($vaccinations);
+        return response()->json(['vaccinations' => VaccinationResource::collection($vaccinations)], 200);
     }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(Vaccination $vaccination)
+    {
+        return response()->json(['vaccination' => new VaccinationResource($vaccination)], 200);
+    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -47,13 +56,6 @@ class VaccinationController
         }
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Vaccination $vaccination)
-    {
-        return new VaccinationResource($vaccination);
-    }
 
     /**
      * Update the specified resource in storage.

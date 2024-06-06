@@ -13,6 +13,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Throwable;
@@ -22,12 +23,12 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return AnonymousResourceCollection
+     * @return JsonResponse
      */
     public function index()
     {
         $users = User::all();
-        return UserResource::collection($users);
+        return response()->json(['users' => UserResource::collection($users)], 200);
     }
 
     /**
@@ -35,11 +36,11 @@ class UserController extends Controller
      *
      * @param User $user
      *
-     * @return UserResource
+     * @return JsonResponse
      */
     public function show(User $user)
     {
-        return new UserResource($user);
+        return response()->json(['user' => new UserResource($user)], 200);
     }
 
     /**
@@ -154,6 +155,7 @@ class UserController extends Controller
             $request->session()->regenerate();
 
             $user = Auth::user();
+            $token = $user->createToken('token')->plainTextToken;
             return response()
                 ->json(['message' => 'Logged in', 'user' => new UserResource($user)], 200);
         } else {
@@ -176,13 +178,24 @@ class UserController extends Controller
      *
      * @return JsonResponse
      */
-    public function search($query)
+    public function search($query = null)
     {
-        $users = User::where('name','like', "%$query%")
-            ->orWhere('surname', 'like', "%$query%")
-            ->orWhere('dni', 'like', "%$query%")
-            ->get();
-
+        if(!$query) {
+            $users = User::all();
+            return response()->json(['users' => UserResource::collection($users)], 200);
+        } else {
+            $users = User::where('name', 'like', "%$query%")
+                ->orWhere('surname', 'like', "%$query%")
+                ->orWhere('dni', 'like', "%$query%")
+                ->get();
+        }
         return response()->json(['users' => UserResource::collection($users)], 200);
+    }
+
+    public function modifyRole(Request $request, User $user)
+    {
+        $user->removeRole($user->roles->first());
+        $user->assignRole($request->role);
+        return response()->json(['message' => 'Role modified'], 200);
     }
 }

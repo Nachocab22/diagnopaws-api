@@ -15,7 +15,7 @@ class VaccineController
     public function index()
     {
         $vaccines = Vaccine::all();
-        return VaccineResource::collection($vaccines);
+        return response()->json(['vaccines' => VaccineResource::collection($vaccines)], 200);
     }
 
     /**
@@ -45,6 +45,20 @@ class VaccineController
             return response()->json(['message' => 'Vaccine deleted'], 200);
         } catch (\Exception $e) {
             return response()->json(['error' => 'Error deleting vaccine', 'message' => $e->getMessage()], 500);
+        }
+    }
+
+    public function search($query = null)
+    {
+        if(!$query) {
+            $vaccines = Vaccine::all();
+            return response()->json(['vaccines' => VaccineResource::collection($vaccines)], 200);
+        } else {
+            $vaccines = Vaccine::where('name', 'like', "%$query%")
+                ->orWhere('manufacturer', 'like', "%$query%")
+                ->get();
+
+            return response()->json(['vaccines' => VaccineResource::collection($vaccines)], 200);
         }
     }
 }
