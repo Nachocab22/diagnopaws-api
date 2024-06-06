@@ -22,7 +22,7 @@ class AddressFactory extends Factory
         return [
             'street' => $this->faker->streetName,
             'number' => (integer) $this->faker->numberBetween(1, 100),
-            'flat' => (integer) $this->faker->numberBetween(1, 20),
+            'flat' => $this->faker->numberBetween(1, 20) . strtoupper($this->faker->randomLetter),
             'town_id' => $townId,
         ];
     }

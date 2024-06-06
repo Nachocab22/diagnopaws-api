@@ -20,11 +20,11 @@ class VaccinationFactory extends Factory
     public function definition(): array
     {
         return [
-            'vaccination_date' => $this->faker->dateTimeThisYear(),
-            'next_vaccination_date' => $this->faker->dateTimeThisYear(),
+            'vaccination_date' => $this->faker->dateTimeThisCentury()->format('Y-m-d'),
+            'next_vaccination_date' => $this->faker->dateTimeThisCentury()->format('Y-m-d'),
             'lot_number' => $this->faker->numberBetween(1000, 9999),
-            'pet_id' => Pet::get('id')->random(),
-            'vaccine_id' => Vaccine::get('id')->random(),
+            'pet_id' => Pet::factory()->create(),
+            'vaccine_id' => $this->faker->numberBetween(1, 10),
 
         ];
     }
