@@ -24,7 +24,11 @@ class UpdateVaccinationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'vaccination_date' => 'required|date',
+            'next_vaccination_date' => 'required|date',
+            'lot_number' => 'nullable|integer',
+            'pet_id' => 'required|exists:pets,id',
+            'vaccine_id' => 'required|exists:vaccines,id',
         ];
     }
 }

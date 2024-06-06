@@ -25,6 +25,7 @@ class StoreAddressRequest extends FormRequest
         return [
             'street' => 'required|string|max:255',
             'number' => 'required|integer',
+            'flat' => 'nullable|string|max:5',
             'town_id' => 'required|integer|exists:Flogti\SpanishCities\Models\Town,id',
         ];
     }
