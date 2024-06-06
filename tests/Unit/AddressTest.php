@@ -47,7 +47,6 @@ class AddressTest extends TestCase
     #[Test] public function create_new_address() {
 
         $address = Address::factory()->make();
-        var_dump($address->toArray());
 
         $response = $this->postJson("api/addresses", $address->toArray());
 
@@ -75,9 +74,9 @@ class AddressTest extends TestCase
 
     #[Test] public function return_address_with_same_data()
     {
-        $address = Address::factory()->create(['street' => 'Test Street', 'number' => 1, 'flat' => 1, 'town_id' => 1]);
+        $address = Address::factory()->create(['street' => 'Test Street', 'number' => 1, 'flat' => '4B', 'town_id' => 1]);
 
-        $newAddress = Address::factory()->make(['street' => 'Test Street', 'number' => 1, 'flat' => 1, 'town_id' => 1]);
+        $newAddress = Address::factory()->make(['street' => 'Test Street', 'number' => 1, 'flat' => '4B', 'town_id' => 1]);
 
         $response = $this->postJson("api/addresses", $newAddress->toArray());
 

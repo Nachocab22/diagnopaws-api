@@ -1,7 +1,6 @@
 <?php
 
 namespace Tests\Unit;
-use App\Http\Resources\PetResource;
 use Laravel\Sanctum\Sanctum;
 use Tests\TestCase;
 use App\Models\Pet;
@@ -35,7 +34,7 @@ class PetTest extends TestCase
         $response = $this->getJson('api/pets');
 
         $response->assertOk()->assertJsonStructure([
-            'data' => [
+            'pets' => [
                 '*' => [
                     'id', 'name', 'birth_date', 'color', 'sex', 'chip', 'breed', 'species'
                 ]
@@ -50,7 +49,7 @@ class PetTest extends TestCase
         $response = $this->getJson("api/pets/{$pet->id}");
 
         $response->assertOk()->assertJson(
-            fn(AssertableJson $json) => $json->has('data')->first(
+            fn(AssertableJson $json) => $json->has('pet')->first(
                 fn(AssertableJson $json) => $json
                     ->where('id', $pet->id)
                     ->where('name', $pet->name)
@@ -71,6 +70,7 @@ class PetTest extends TestCase
 
     #[Test] public function creates_new_pet()
     {
+        $this->user->assignRole('owner');
         $pet = Pet::factory()->make();
 
         $response = $this->postJson('api/pets', $pet->toArray());
@@ -93,35 +93,85 @@ class PetTest extends TestCase
         );
 
         $this->assertDatabaseHas('pets', ['name' => $pet->name]);
+        $this->user->removeRole('owner');
     }
 
     #[Test] public function it_fails_to_create_a_pet_with_invalid_data()
     {
+        $this->user->assignRole('owner');
         $response = $this->postJson('api/pets', []);
 
         $response->assertUnprocessable();
+        $this->user->removeRole('owner');
     }
-
 
     #[Test] public function updates_a_pet()
     {
+        $this->user->assignRole('owner');
         $pet = Pet::factory()->create(['name' => 'Old Name']);
 
         $this->putJson("api/pets/{$pet->id}", ['name' => 'New Name'])
             ->assertOk();
 
         $this->assertDatabaseHas('pets', ['id' => $pet->id, 'name' => 'New Name']);
+        $this->user->removeRole('owner');
     }
-
 
     #[Test] public function delete_a_pet()
     {
+        $this->user->assignRole('owner');
         $pet = Pet::factory()->create();
 
         $this->delete("api/pets/{$pet->id}")
             ->assertOk();
 
         $this->assertDatabaseMissing('pets', ['id' => $pet->id]);
+        $this->user->removeRole('owner');
+    }
+
+    #[Test] public function show_pets_of_authenticated_user()
+    {
+        $this->user->assignRole('owner');
+        $pets = Pet::factory()->count(5)->create(['user_id' => $this->user->id]);
+
+        $response = $this->getJson('api/user/pets');
+
+        $response->assertOk()->assertJsonStructure([
+            'pets' => [
+                '*' => [
+                    'id', 'name', 'birth_date', 'color', 'sex', 'chip', 'breed', 'species'
+                ]
+            ]
+        ]);
+        $this->user->removeRole('owner');
+    }
+
+    #[Test] public function search_pets()
+    {
+        $this->user->assignRole('owner');
+        $pet = Pet::factory()->create(['name' => 'Firulais']);
+
+        $response = $this->getJson('api/pets/search/Firulais');
+
+        $response->assertOk()->assertJson(
+            fn(AssertableJson $json) => $json->has('pets.0',
+                fn(AssertableJson $json) => $json
+                    ->where('id', $pet->id)
+                    ->where('name', $pet->name)
+                    ->where('birth_date', $pet->birth_date)
+                    ->where('color', $pet->color)
+                    ->where('sex', $pet->sex)
+                    ->where('chip.number', $pet->chip_number)
+                    ->where('chip.marking_date', $pet->chip_marking_date)
+                    ->where('chip.position', $pet->chip_position)
+                    ->has('breed')
+                    ->has('species')
+                    ->has('owner')
+                    ->has('vaccinations')
+                    ->etc()
+            )
+        );
+        $this->user->removeRole('owner');
     }
 
 }

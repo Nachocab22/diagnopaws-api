@@ -6,16 +6,23 @@ use Database\Seeders\GenderSeeder;
 use Database\Seeders\SpeciesSeeder;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Testing\Fluent\AssertableJson;
 use Laravel\Sanctum\Sanctum;
 use PHPUnit\Framework\Attributes\Test;
-use Tests\TestCase;
 use App\Models\User;
+use Tests\TestCase;
 use App\Models\Address;
 
 class UserTest extends TestCase
 {
     use DatabaseTransactions;
+
+    protected User $user;
+    public function authenticateUser(): void
+    {
+        Sanctum::actingAs($this->user, ['*']);
+    }
     public function setUp(): void
     {
         parent::setUp();
@@ -24,17 +31,17 @@ class UserTest extends TestCase
         $this->seed(SpeciesSeeder::class);
 
         $this->user = User::factory()->create();
-        Sanctum::actingAs($this->user);
     }
 
     #[Test] public function show_all_users()
     {
+        $this->authenticateUser();
         $users = User::factory()->count(5)->create();
 
         $response = $this->getJson('api/users');
 
         $response->assertOk()->assertJsonStructure([
-            'data' => [
+            'users' => [
                 '*' => [
                     'id', 'name', 'surname', 'birth_date', 'dni', 'phone', 'email', 'gender', 'address'
                 ]
@@ -44,41 +51,73 @@ class UserTest extends TestCase
 
     #[Test] public function show_one_user()
     {
+        $this->authenticateUser();
         $user = User::factory()->create();
 
-        $response = $this->getJson("api/user");
+        $response = $this->getJson("api/users/{$user->id}");
 
-        $expectedData = [
-            'data' => [
-                'id' => $user->id,
-                'name' => $user->name,
-                'surname' => $user->surname,
-                'birth_date' => $user->birth_date->format('Y-m-d'),
-                'dni' => $user->dni,
-                'phone' => $user->phone,
-                'email' => $user->email,
-                'gender' => [
-                    'id' => $user->gender_id,
-                    'name' => $user->gender->name,
-                ],
-                'address' => [
-                    'id' => $user->address_id,
-                    'street' => $user->address->street,
-                    'number' => $user->address->number,
-                    'flat' => $user->address->flat,
-                    'town' => [
-                        'id' => $user->address->town_id,
-                        'name' => $user->address->town->name,
-                    ],
-                ],
-            ]
-        ];
-
-        $response->assertOk()->assertJson($expectedData);
+        $response->assertOk()->assertJson(
+            fn(AssertableJson $json) => $json->has('user')->first(
+                fn(AssertableJson $json) => $json
+                    ->where('id', $user->id)
+                    ->where('name', $user->name)
+                    ->where('surname', $user->surname)
+                    ->where('birth_date', $user->birth_date->format('Y-m-d'))
+                    ->where('dni', $user->dni)
+                    ->where('phone', $user->phone)
+                    ->where('email', $user->email)
+                    ->where('gender.name', $user->gender->name)
+                    ->where('address.id', $user->address->id)
+                    ->etc()
+            )
+        );
     }
 
-    #[Test] public function create_new_user()
+    #[Test] public function register_new_user()
     {
+        $address = Address::factory()->create();
+        $user = [
+            'name' => 'Pedro',
+            'surname' => 'Pérez',
+            'birth_date' => '1990-01-01',
+            'dni' => '77783282L',
+            'phone' => '643726437',
+            'email' => 'pedro@correo.es',
+            'password' => 'password',
+            'gender_id' => 1,
+            'address_id' => $address->id,
+        ];
+
+        $response = $this->postJson('api/register', $user);
+
+        $response->assertCreated()
+                ->assertJson(
+                    fn(AssertableJson $json) => $json->has('user')->first(
+                        fn(AssertableJson $json) => $json
+                        ->where('name', 'Pedro')
+                        ->where('surname', 'Pérez')
+                        ->where('birth_date', '1990-01-01')
+                        ->where('dni', '77783282L')
+                        ->where('phone', '643726437')
+                        ->where('email', 'pedro@correo.es')
+                        ->missing('password')
+                        ->where('gender.id', 1)
+                        ->where('gender.name', 'Hombre')
+                        ->where('address.id', $address->id)
+                        ->where('role', ['owner'])
+                        ->etc()
+                    )
+        );
+        $this->assertDatabaseHas('users', [
+            'email' => 'pedro@correo.es'
+        ]);
+        $this->user->removeRole('admin');
+    }
+
+    #[Test] public function owner_cannot_create_new_user()
+    {
+        $this->authenticateUser();
+        $this->user->assignRole('owner');
         $address = Address::factory()->create();
         $user = [
             'name' => 'Pedro',
@@ -94,32 +133,16 @@ class UserTest extends TestCase
 
         $response = $this->postJson('api/users', $user);
 
-        $response->assertCreated()
-                ->assertJson(
-                    fn(AssertableJson $json) => $json->has('user')->first(
-                        fn(AssertableJson $json) => $json
-                        ->where('name', 'Pedro')
-                        ->where('surname', 'Pérez')
-                        ->where('birth_date', '1990-01-01')
-                        ->where('dni', '32090108W')
-                        ->where('phone', '643726437')
-                        ->where('email', 'pedro@correo.es')
-                        ->missing('password')
-                        ->where('gender.id', 1)
-                        ->where('gender.name', 'Hombre')
-                        ->where('address.id', $address->id)
-                        ->etc()
-                    )
-        );
-        $this->assertDatabaseHas('users', [
-            'email' => 'pedro@correo.es'
-        ]);
+        $response->assertForbidden();
+        $this->user->removeRole('owner');
     }
 
     // Pruebas para el Registro de Usuarios
 
     #[Test] public function user_registration_fails_due_to_validation_errors()
     {
+        $this->authenticateUser();
+        $this->user->assignRole('admin');
         $userData = [
             'name' => '', // Campo requerido vacío
             'surname' => 'Doe',
@@ -134,14 +157,17 @@ class UserTest extends TestCase
 
         $nUsers = DB::table('users')->count();
 
-        $response = $this->postJson('api/users', $userData);
+        $response = $this->postJson('api/register', $userData);
 
         $response->assertUnprocessable();
         $this->assertDatabaseCount('users', $nUsers);
+        $this->user->removeRole('admin');
     }
 
     #[Test] public function user_registration_fails_due_to_duplicate_email()
     {
+        $this->authenticateUser();
+        $this->user->assignRole('admin');
         $existingUser = User::factory()->create(['email' => 'john@example.com']);
 
         $userData = [
@@ -158,24 +184,29 @@ class UserTest extends TestCase
 
         $nUsers = DB::table('users')->count();
 
-        $response = $this->postJson('api/users', $userData);
+        $response = $this->postJson('api/register', $userData);
         $response->assertUnprocessable();
         $this->assertDatabaseCount('users', $nUsers);
+        $this->user->removeRole('admin');
     }
 
-    // Pruebas para el Login de Usuarios
-    #[Test] public function can_login_with_valid_credentials()
+    // Método de prueba para verificar la sesión de Sanctum
+    #[Test] public function can_access_authenticated_route()
     {
-        $user = User::factory()->create(['password' => bcrypt('valid_password')]);
+        $user = User::factory()->create();
 
-        $response = $this->postJson('api/login', [
-            'email' => $user->email,
-            'password' => 'valid_password'
+        $this->actingAs($user, 'sanctum');
+
+        $response = $this->getJson('api/user');
+
+        $response->assertOk()->assertJsonStructure([
+            'name',
+            'surname',
+            'birth_date',
+            'dni',
+            'phone',
+            'email',
         ]);
-
-        $response->assertOk()->assertJson(
-          ['message' => 'Logged in']
-        );
     }
 
     #[Test] public function cannot_login_with_invalid_mail()
@@ -212,4 +243,34 @@ class UserTest extends TestCase
                 ->etc()
         );
     }
+    #[Test] public function search_user ()
+    {
+        $this->authenticateUser();
+        $user = User::factory()->create(['name' => 'Pedro']);
+        $response = $this->getJson("api/user/search/Pedro");
+        $response->assertOk()->assertJson(
+            fn(AssertableJson $json) => $json->has('users.0',
+                fn(AssertableJson $json) => $json
+                    ->where('id', $user->id)
+                    ->where('name', $user->name)
+                    ->where('surname', $user->surname)
+                    ->where('birth_date', $user->birth_date->format('Y-m-d'))
+                    ->where('dni', $user->dni)
+                    ->where('phone', $user->phone)
+                    ->where('email', $user->email)
+                    ->etc()
+            ));
+    }
+
+    #[Test] public function modify_role()
+    {
+        $this->authenticateUser();
+        $this->user->assignRole('admin');
+        $user = User::factory()->create();
+        $response = $this->putJson("api/user/role/{$user->id}", ['role' => ['vet']]);
+        $response->assertOk();
+        $this->assertDatabaseHas('model_has_roles', ['model_id' => $user->id, 'role_id' => 2]);
+        $this->user->removeRole('admin');
+    }
 }
+
