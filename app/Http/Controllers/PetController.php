@@ -19,7 +19,7 @@ class PetController extends Controller
      */
     public function index() {
         $pets = Pet::all();
-        return PetResource::collection($pets);
+        return response()->json(['pets' => PetResource::collection($pets)], 200);
     }
 
     /**
@@ -27,7 +27,7 @@ class PetController extends Controller
      */
     public function show(Pet $pet)
     {
-        return new PetResource($pet);
+        return response()->json(['pet' => new PetResource($pet)], 200);
     }
 
     /**
@@ -101,15 +101,20 @@ class PetController extends Controller
     /**
      * Display a list of filtered pets
      */
-    public function search($query)
+    public function search($query = null)
     {
-        $pets = Pet::where('name', 'like', "%$query%")
-            ->orWhereHas('owner', function($q) use ($query) {
-                $q->where('name', 'like', "%$query%")
-                    ->orWhere('dni', 'like', "%$query%");
-            })
-            ->get();
-
+        if(!$query) {
+            $pets = Pet::all();
+            return response()->json(['pets' => PetResource::collection($pets)], 200);
+        } else {
+            $pets = Pet::where('name', 'like', "%$query%")
+                ->orWhereHas('owner', function ($q) use ($query) {
+                    $q->where('name', 'like', "%$query%")
+                        ->orWhere('surname', 'like', "%$query%")
+                        ->orWhere('dni', 'like', "%$query%");
+                })
+                ->get();
+        }
         return response()->json(['pets' => PetResource::collection($pets)], 200);
     }
 }
