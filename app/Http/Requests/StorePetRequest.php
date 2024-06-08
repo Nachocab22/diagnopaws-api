@@ -4,7 +4,6 @@ namespace App\Http\Requests;
 
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
-use App\Enums\SexEnum;
 use Illuminate\Support\Facades\Auth;
 
 class StorePetRequest extends FormRequest
