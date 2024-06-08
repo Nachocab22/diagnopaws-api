@@ -31,7 +31,7 @@ class PetResource extends JsonResource
             ],
             'breed' => new BreedResource($this->breed),
             'species' => new SpeciesResource($this->breed->species),
-            'owner' => $this->owner->name . ' ' . $this->owner->surname,
+            'owner' => new UserResource($this->owner),
             'vaccinations' => VaccinationResource::collection($this->vaccinations),
             'image' => $this->image ? url('storage/' . $this->image) : null
         ];
