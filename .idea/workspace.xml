@@ -5,30 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cc343e24-2e80-482b-b679-9f6e1f03ff93" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.env.example" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PetController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PetController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/VaccinationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/VaccinationController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/VaccineController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/VaccineController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Kernel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/StoreAddressRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/StoreAddressRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/StoreVaccinationRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/StoreVaccinationRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/UpdateVaccinationRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/UpdateVaccinationRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/AddressResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/AddressResource.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/UserResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/UserResource.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Vaccination.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Vaccination.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/session.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/session.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/AddressFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/AddressFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/VaccinationFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/VaccinationFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/RolesAndPermissionsSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/RolesAndPermissionsSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/phpunit.xml" beforeDir="false" afterPath="$PROJECT_DIR$/phpunit.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/Models/VaccinationTest.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/Models/VaccineTest.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Unit/AddressTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Unit/AddressTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Unit/PetTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Unit/PetTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Unit/UserTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Unit/UserTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/StorePetRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/StorePetRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/UpdatePetRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/UpdatePetRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/PetResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/PetResource.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,6 +22,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="PhpDebugGeneral" listening_started="true" />
   <component name="PhpServers">
     <servers>
       <server host="127.0.0.1" id="27274974-1088-459d-9f10-0a110274f2b4" name="127.0.0.1" port="8000" />
@@ -310,6 +291,9 @@
       <workItem from="1717583140199" duration="4615000" />
       <workItem from="1717660780582" duration="2325000" />
       <workItem from="1717674548503" duration="6866000" />
+      <workItem from="1717768238355" duration="4388000" />
+      <workItem from="1717787195181" duration="468000" />
+      <workItem from="1717798934785" duration="683000" />
     </task>
     <servers />
   </component>
@@ -347,13 +331,18 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/app/Http/Requests/StorePetRequest.php</url>
-          <line>16</line>
+          <line>15</line>
           <option name="timeStamp" value="46" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/app/Http/Controllers/PetController.php</url>
           <line>105</line>
           <option name="timeStamp" value="56" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/app/Http/Requests/StoreAddressRequest.php</url>
+          <line>24</line>
+          <option name="timeStamp" value="57" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
