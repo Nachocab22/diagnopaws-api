@@ -24,13 +24,16 @@ class UpdatePetRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'sometimes|required|string|max:255',
-            'birth_date' => 'sometimes|required|date',
-            'color' => 'sometimes|required|string|max:255',
-            'sex' => 'sometimes|required|enum',
-            'chip_number' => 'sometimes|required|string|max:255|unique:App\Models\Pet,chip_number',
-            'chip_marking_date' => 'sometimes|required|date',
-            'chip_position' => 'sometimes|required|string|max:255'
+            'name' => 'required|string|max:255',
+            'birth_date' => 'required|date',
+            'color' => 'required|string|max:255',
+            'sex' => ['required', 'in:Male,Female'],
+            'chip_number' => 'nullable|string|max:255|unique:App\Models\Pet,chip_number',
+            'chip_marking_date' => 'nullable|date',
+            'chip_position' => 'nullable|string|max:255',
+            'user_id' => 'required|integer|exists:App\Models\User,id',
+            'breed_id' => 'required|integer|exists:App\Models\Breed,id',
+            'image' => 'nullable|image|mimes:jpeg,png,svg|max:2048',
         ];
     }
 }
