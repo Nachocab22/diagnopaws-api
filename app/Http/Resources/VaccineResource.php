@@ -18,6 +18,7 @@ class VaccineResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'manufacturer' => $this->manufacturer,
+            'sicknesses_treated' => $this->sicknesses_treated,
         ];
     }
 }
