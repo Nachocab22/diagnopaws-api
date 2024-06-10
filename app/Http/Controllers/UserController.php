@@ -11,9 +11,7 @@ use App\Models\Gender;
 use App\Models\Address;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Routing\Controller;
-use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Throwable;
@@ -99,25 +97,6 @@ class UserController extends Controller
     public function update(UpdateUserRequest $request, User $user)
     {
         try {
-            $user->fill($request->validated());
-            $user->save();
-            return response()->json(['user' => new UserResource($user)], 200);
-        } catch (\Exception $e) {
-            return response()->json(['message' => 'Error updating user', 'error' => $e->getMessage()], 500);
-        }
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param UpdateUserRequest $request
-     *
-     * @return JsonResponse
-     */
-    public function updateProfile(UpdateUserRequest $request)
-    {
-        try {
-            $user = Auth::user();
             $user->fill($request->validated());
             $user->save();
             return response()->json(['user' => new UserResource($user)], 200);
