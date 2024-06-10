@@ -45,8 +45,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/users', [UserController::class, 'index']);
     Route::get('/users/{user}', [UserController::class, 'show']);
     Route::post('/users', [UserController::class, 'store']);
-    Route::put('/user/{user}', [UserController::class, 'update']);
-    Route::put('/user', [UserController::class, 'updateProfile']);
+    Route::put('/users/{user}', [UserController::class, 'update']);
     Route::delete('/users/{user}', [UserController::class, 'destroy']);
     Route::get('users/search/{query?}', [UserController::class, 'search']);
     Route::put('user/role/{user}', [UserController::class, 'modifyRole']);
@@ -61,6 +60,7 @@ Route::middleware('auth:sanctum')->group(function () {
     //Endpoints Vaccines
     Route::get('/vaccines', [VaccineController::class, 'index']);
     Route::post('/vaccines', [VaccineController::class, 'store']);
+    Route::put('/vaccines/{vaccine}', [VaccineController::class, 'update']);
     Route::delete('/vaccines/{vaccine}', [VaccineController::class, 'destroy']);
     Route::get('vaccines/search/{query?}', [VaccineController::class, 'search']);
 
