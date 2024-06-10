@@ -5,10 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cc343e24-2e80-482b-b679-9f6e1f03ff93" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/app/Http/Requests/UpdateVaccineRequest.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/StorePetRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/StorePetRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/UpdatePetRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/UpdatePetRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/PetResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/PetResource.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/VaccineController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/VaccineController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/UpdateUserRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/UpdateUserRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/VaccineResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/VaccineResource.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeders/RolesAndPermissionsSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/RolesAndPermissionsSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,7 +26,6 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="PhpDebugGeneral" listening_started="true" />
   <component name="PhpServers">
     <servers>
       <server host="127.0.0.1" id="27274974-1088-459d-9f10-0a110274f2b4" name="127.0.0.1" port="8000" />
@@ -293,7 +296,8 @@
       <workItem from="1717674548503" duration="6866000" />
       <workItem from="1717768238355" duration="4388000" />
       <workItem from="1717787195181" duration="468000" />
-      <workItem from="1717798934785" duration="683000" />
+      <workItem from="1717798934785" duration="4260000" />
+      <workItem from="1717865866993" duration="7993000" />
     </task>
     <servers />
   </component>
@@ -320,11 +324,6 @@
           <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/app/Http/Requests/StoreUserRequest.php</url>
-          <line>29</line>
-          <option name="timeStamp" value="37" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/tests/Unit/UserTest.php</url>
           <line>77</line>
           <option name="timeStamp" value="44" />
@@ -343,6 +342,11 @@
           <url>file://$PROJECT_DIR$/app/Http/Requests/StoreAddressRequest.php</url>
           <line>24</line>
           <option name="timeStamp" value="57" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/app/Http/Requests/UpdateVaccineRequest.php</url>
+          <line>25</line>
+          <option name="timeStamp" value="59" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
