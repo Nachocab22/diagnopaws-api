@@ -35,6 +35,18 @@ class VaccineController
         }
     }
 
+    public function update(UpdateVaccineRequest $request, Vaccine $vaccine)
+    {
+        try {
+            $vaccine->fill($request->only(['name', 'manufacturer', 'sicknesses_treated']));
+            $vaccine->save();
+            return response()->json(['vaccine' => new VaccineResource($vaccine)], 200);
+
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Error updating vaccine', 'message' => $e->getMessage()], 500);
+        }
+    }
+
     /**
      * Remove the specified resource from storage.
      */
