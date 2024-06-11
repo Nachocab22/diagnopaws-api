@@ -5,14 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cc343e24-2e80-482b-b679-9f6e1f03ff93" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Http/Requests/UpdateVaccineRequest.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/VaccineController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/VaccineController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/UpdateUserRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/UpdateUserRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/VaccineResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/VaccineResource.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/RolesAndPermissionsSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/RolesAndPermissionsSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PetController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PetController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/VaccinationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/VaccinationController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/UpdatePetRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/UpdatePetRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Unit/PetTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Unit/PetTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Unit/UserTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Unit/UserTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -175,6 +175,7 @@
   &quot;keyToString&quot;: {
     &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
     &quot;PHPUnit.Main.executor&quot;: &quot;Debug&quot;,
+    &quot;PHPUnit.PetTest.updates_a_pet.executor&quot;: &quot;Debug&quot;,
     &quot;PHPUnit.UserTest.can_access_authenticated_route.executor&quot;: &quot;Debug&quot;,
     &quot;PHPUnit.UserTest.can_login_with_valid_credentials (1).executor&quot;: &quot;Debug&quot;,
     &quot;PHPUnit.UserTest.can_login_with_valid_credentials.executor&quot;: &quot;Debug&quot;,
@@ -210,8 +211,8 @@
       <TestRunner configuration_file="$PROJECT_DIR$/phpunit.xml" scope="XML" use_alternative_configuration_file="true" />
       <method v="2" />
     </configuration>
-    <configuration name="UserTest.can_access_authenticated_route" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="Tests\Unit\UserTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Unit/UserTest.php" method="can_access_authenticated_route" scope="Method" />
+    <configuration name="PetTest.updates_a_pet" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Unit\PetTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Unit/PetTest.php" method="updates_a_pet" scope="Method" />
       <method v="2" />
     </configuration>
     <configuration name="UserTest.can_login_with_valid_credentials (1)" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
@@ -237,10 +238,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="PHPUnit.UserTest.modify_role" />
+        <item itemvalue="PHPUnit.PetTest.updates_a_pet" />
         <item itemvalue="PHPUnit.VaccinationTest.create_new_vaccination" />
         <item itemvalue="PHPUnit.UserTest.can_login_with_valid_credentials (1)" />
         <item itemvalue="PHPUnit.UserTest.can_login_with_valid_credentials" />
-        <item itemvalue="PHPUnit.UserTest.can_access_authenticated_route" />
       </list>
     </recent_temporary>
   </component>
@@ -298,6 +299,9 @@
       <workItem from="1717787195181" duration="468000" />
       <workItem from="1717798934785" duration="4260000" />
       <workItem from="1717865866993" duration="7993000" />
+      <workItem from="1718016944561" duration="3637000" />
+      <workItem from="1718044724809" duration="5315000" />
+      <workItem from="1718096527561" duration="1730000" />
     </task>
     <servers />
   </component>
@@ -324,29 +328,29 @@
           <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/tests/Unit/UserTest.php</url>
-          <line>77</line>
-          <option name="timeStamp" value="44" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/app/Http/Requests/StorePetRequest.php</url>
           <line>15</line>
           <option name="timeStamp" value="46" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/app/Http/Controllers/PetController.php</url>
-          <line>105</line>
-          <option name="timeStamp" value="56" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/app/Http/Requests/StoreAddressRequest.php</url>
-          <line>24</line>
+          <line>25</line>
           <option name="timeStamp" value="57" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/app/Http/Requests/UpdateVaccineRequest.php</url>
           <line>25</line>
           <option name="timeStamp" value="59" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/app/Http/Controllers/UserController.php</url>
+          <line>99</line>
+          <option name="timeStamp" value="61" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/tests/Unit/PetTest.php</url>
+          <line>136</line>
+          <option name="timeStamp" value="64" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
