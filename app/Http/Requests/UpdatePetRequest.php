@@ -28,7 +28,7 @@ class UpdatePetRequest extends FormRequest
             'birth_date' => 'required|date',
             'color' => 'required|string|max:255',
             'sex' => ['required', 'in:Male,Female'],
-            'chip_number' => 'nullable|string|max:255|unique:App\Models\Pet,chip_number',
+            'chip_number' => 'nullable|string|max:255',
             'chip_marking_date' => 'nullable|date',
             'chip_position' => 'nullable|string|max:255',
             'user_id' => 'required|integer|exists:App\Models\User,id',
