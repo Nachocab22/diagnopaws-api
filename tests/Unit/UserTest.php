@@ -48,7 +48,6 @@ class UserTest extends TestCase
             ]
         ]);
     }
-
     #[Test] public function show_one_user()
     {
         $this->authenticateUser();
@@ -72,7 +71,6 @@ class UserTest extends TestCase
             )
         );
     }
-
     #[Test] public function register_new_user()
     {
         $address = Address::factory()->create();
@@ -113,7 +111,6 @@ class UserTest extends TestCase
         ]);
         $this->user->removeRole('admin');
     }
-
     #[Test] public function owner_cannot_create_new_user()
     {
         $this->authenticateUser();
@@ -136,9 +133,7 @@ class UserTest extends TestCase
         $response->assertForbidden();
         $this->user->removeRole('owner');
     }
-
     // Pruebas para el Registro de Usuarios
-
     #[Test] public function user_registration_fails_due_to_validation_errors()
     {
         $this->authenticateUser();
@@ -163,7 +158,6 @@ class UserTest extends TestCase
         $this->assertDatabaseCount('users', $nUsers);
         $this->user->removeRole('admin');
     }
-
     #[Test] public function user_registration_fails_due_to_duplicate_email()
     {
         $this->authenticateUser();
@@ -189,7 +183,6 @@ class UserTest extends TestCase
         $this->assertDatabaseCount('users', $nUsers);
         $this->user->removeRole('admin');
     }
-
     // Método de prueba para verificar la sesión de Sanctum
     #[Test] public function can_access_authenticated_route()
     {
@@ -208,7 +201,6 @@ class UserTest extends TestCase
             'email',
         ]);
     }
-
     #[Test] public function cannot_login_with_invalid_mail()
     {
         $user = User::factory()->create(['email' => 'invalid', 'password' => bcrypt('valid_password')]);
@@ -227,7 +219,6 @@ class UserTest extends TestCase
 
         $user->delete();
     }
-
     #[Test] public function cannot_login_with_invalid_password()
     {
         $user = User::factory()->create(['password' => bcrypt('invalid')]);
@@ -246,8 +237,8 @@ class UserTest extends TestCase
     #[Test] public function search_user ()
     {
         $this->authenticateUser();
-        $user = User::factory()->create(['name' => 'Pedro']);
-        $response = $this->getJson("api/user/search/Pedro");
+        $user = User::factory()->create(['name' => 'PruebaTest']);
+        $response = $this->getJson("api/users/search/PruebaTest");
         $response->assertOk()->assertJson(
             fn(AssertableJson $json) => $json->has('users.0',
                 fn(AssertableJson $json) => $json
@@ -261,15 +252,19 @@ class UserTest extends TestCase
                     ->etc()
             ));
     }
-
     #[Test] public function modify_role()
     {
         $this->authenticateUser();
         $this->user->assignRole('admin');
+
         $user = User::factory()->create();
-        $response = $this->putJson("api/user/role/{$user->id}", ['role' => ['vet']]);
-        $response->assertOk();
+        $user->assignRole('owner');
+
+        $response = $this->putJson("api/user/role/{$user->id}", ['role' => ['vet']])
+            ->assertOk();
+
         $this->assertDatabaseHas('model_has_roles', ['model_id' => $user->id, 'role_id' => 2]);
+
         $this->user->removeRole('admin');
     }
 }

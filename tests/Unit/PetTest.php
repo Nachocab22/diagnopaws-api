@@ -108,14 +108,40 @@ class PetTest extends TestCase
     #[Test] public function updates_a_pet()
     {
         $this->user->assignRole('owner');
-        $pet = Pet::factory()->create(['name' => 'Old Name']);
 
-        $this->putJson("api/pets/{$pet->id}", ['name' => 'New Name'])
+        $pet = Pet::factory()->create([
+            'name' => 'Old Name',
+            'birth_date' => '2020-01-01',
+            'color' => 'Brown',
+            'sex' => 'Male',
+            'chip_number' => '1234567890',
+            'chip_marking_date' => '2020-02-01',
+            'chip_position' => 'Neck',
+            'user_id' => $this->user->id,
+            'breed_id' => 1,
+        ]);
+
+        $updateData = [
+            'name' => 'New Name',
+            'birth_date' => '2020-01-01',
+            'color' => 'Brown',
+            'sex' => 'Male',
+            'chip_number' => '1234567890',
+            'chip_marking_date' => '2020-02-01',
+            'chip_position' => 'Neck',
+            'user_id' => $this->user->id,
+            'breed_id' => 1,
+            'image' => null,
+        ];
+
+        $this->putJson("api/pets/{$pet->id}", $updateData)
             ->assertOk();
 
         $this->assertDatabaseHas('pets', ['id' => $pet->id, 'name' => 'New Name']);
+
         $this->user->removeRole('owner');
     }
+
 
     #[Test] public function delete_a_pet()
     {
