@@ -36,7 +36,7 @@ class VaccinationController
     {
         try {
             $vaccination = new Vaccination();
-            $vaccination->fill($request->only(['vaccination_date', 'next_vaccination_date', 'lot_number']));
+            $vaccination->fill($request->only(['vaccine_id', 'vaccination_date', 'next_vaccination_date', 'lot_number']));
 
             $pet = Pet::find($request->pet_id);
             $vaccine = Vaccine::find($request->vaccine_id);
