@@ -6,13 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="cc343e24-2e80-482b-b679-9f6e1f03ff93" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PetController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PetController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/VaccinationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/VaccinationController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/UpdatePetRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/UpdatePetRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Unit/PetTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Unit/PetTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Unit/UserTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Unit/UserTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -302,6 +295,8 @@
       <workItem from="1718016944561" duration="3637000" />
       <workItem from="1718044724809" duration="5315000" />
       <workItem from="1718096527561" duration="1730000" />
+      <workItem from="1718191622988" duration="5692000" />
+      <workItem from="1718269514966" duration="1239000" />
     </task>
     <servers />
   </component>
