@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="53c18f91-c33d-4ec7-b8e1-88980e799b24" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/diagnopaws-api.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="cc343e24-2e80-482b-b679-9f6e1f03ff93" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -22,13 +19,12 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="PhpDebugGeneral" listening_started="true" />
   <component name="PhpServers">
     <servers>
-      <server host="localhost" id="bd383c62-af4b-4d48-8e07-5dad31f103ff" name="localhost" port="8000" />
+      <server host="127.0.0.1" id="27274974-1088-459d-9f10-0a110274f2b4" name="127.0.0.1" port="8000" />
     </servers>
   </component>
-  <component name="PhpWebServerValidation" path_to_validation_script="$PROJECT_DIR$" selected_validation_type="REMOTE" web_path_to_validation_script="http://127.0.0.1/" />
+  <component name="PhpWebServerValidation" path_to_validation_script="$PROJECT_DIR$/public" selected_validation_type="LOCAL" web_path_to_validation_script="http://localhost" />
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="/opt/homebrew/Cellar/php/8.3.0/bin/php">
     <include_path>
       <path value="$PROJECT_DIR$/vendor/brick/math" />
@@ -159,29 +155,89 @@
       <path value="$PROJECT_DIR$/vendor/spatie/laravel-permission" />
     </include_path>
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 2
-}]]></component>
-  <component name="ProjectId" id="2jj25DAUjoRod1HBAZkmWsoFPwB" />
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 0
+}</component>
+  <component name="ProjectId" id="2fbH2atVnIiFJ6P45Rtsv4ZNZ5U" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "PHP Script.UpdatePetRequest.php.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.laravel-idea.update-module-directories": "true",
-    "git-widget-placeholder": "main",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "reference.webide.settings.project.settings.php.debug",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;PHPUnit.Main.executor&quot;: &quot;Debug&quot;,
+    &quot;PHPUnit.PetTest.updates_a_pet.executor&quot;: &quot;Debug&quot;,
+    &quot;PHPUnit.UserTest.can_access_authenticated_route.executor&quot;: &quot;Debug&quot;,
+    &quot;PHPUnit.UserTest.can_login_with_valid_credentials (1).executor&quot;: &quot;Debug&quot;,
+    &quot;PHPUnit.UserTest.can_login_with_valid_credentials.executor&quot;: &quot;Debug&quot;,
+    &quot;PHPUnit.UserTest.createUser.executor&quot;: &quot;Run&quot;,
+    &quot;PHPUnit.UserTest.create_new_user.executor&quot;: &quot;Debug&quot;,
+    &quot;PHPUnit.UserTest.deleteUser.executor&quot;: &quot;Debug&quot;,
+    &quot;PHPUnit.UserTest.executor&quot;: &quot;Run&quot;,
+    &quot;PHPUnit.UserTest.modify_role.executor&quot;: &quot;Debug&quot;,
+    &quot;PHPUnit.UserTest.owner_cannot_create_new_user.executor&quot;: &quot;Debug&quot;,
+    &quot;PHPUnit.UserTest.register_new_user.executor&quot;: &quot;Debug&quot;,
+    &quot;PHPUnit.UserTest.show_one_user.executor&quot;: &quot;Debug&quot;,
+    &quot;PHPUnit.VaccinationTest.create_new_vaccination.executor&quot;: &quot;Run&quot;,
+    &quot;PHPUnit.VaccinationTest.updates_a_vaccination.executor&quot;: &quot;Debug&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.laravel-idea.update-module-directories&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.MySQL, MariaDB&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
+      &quot;TEXT&quot;
+    ]
   }
-}]]></component>
+}</component>
+  <component name="RunManager" selected="PHPUnit.Main">
+    <configuration name="Main" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <TestRunner configuration_file="$PROJECT_DIR$/phpunit.xml" scope="XML" use_alternative_configuration_file="true" />
+      <method v="2" />
+    </configuration>
+    <configuration name="PetTest.updates_a_pet" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Unit\PetTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Unit/PetTest.php" method="updates_a_pet" scope="Method" />
+      <method v="2" />
+    </configuration>
+    <configuration name="UserTest.can_login_with_valid_credentials (1)" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Unit\UserTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Unit/UserTest.php" method="can_login_with_valid_credentials" scope="Method" />
+      <method v="2" />
+    </configuration>
+    <configuration name="UserTest.can_login_with_valid_credentials" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Unit\UserTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Unit/UserTest.php" method="can_login_with_valid_credentials" scope="Pattern">
+        <test_patterns>
+          <composite_test_pattern class_fqn="Tests\Unit\UserTest" file_path="$PROJECT_DIR$/tests/Unit/UserTest.php" method_name="can_login_with_valid_credentials" />
+        </test_patterns>
+      </TestRunner>
+      <method v="2" />
+    </configuration>
+    <configuration name="UserTest.modify_role" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Unit\UserTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Unit/UserTest.php" method="modify_role" scope="Method" />
+      <method v="2" />
+    </configuration>
+    <configuration name="VaccinationTest.create_new_vaccination" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Unit\VaccinationTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Unit/VaccinationTest.php" method="create_new_vaccination" scope="Method" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="PHPUnit.UserTest.modify_role" />
+        <item itemvalue="PHPUnit.PetTest.updates_a_pet" />
+        <item itemvalue="PHPUnit.VaccinationTest.create_new_vaccination" />
+        <item itemvalue="PHPUnit.UserTest.can_login_with_valid_credentials (1)" />
+        <item itemvalue="PHPUnit.UserTest.can_login_with_valid_credentials" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -193,27 +249,102 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="53c18f91-c33d-4ec7-b8e1-88980e799b24" name="Changes" comment="" />
-      <created>1721885980480</created>
+      <changelist id="cc343e24-2e80-482b-b679-9f6e1f03ff93" name="Changes" comment="" />
+      <created>1714062652434</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1721885980480</updated>
-      <workItem from="1721885982345" duration="14000" />
+      <updated>1714062652434</updated>
+      <workItem from="1714062653765" duration="2648000" />
+      <workItem from="1714071443827" duration="4478000" />
+      <workItem from="1714120352704" duration="8702000" />
+      <workItem from="1714131217082" duration="7832000" />
+      <workItem from="1714379981578" duration="54031000" />
+      <workItem from="1714718896334" duration="14726000" />
+      <workItem from="1714984107498" duration="23137000" />
+      <workItem from="1715152945113" duration="7027000" />
+      <workItem from="1715241992581" duration="653000" />
+      <workItem from="1715344141720" duration="2059000" />
+      <workItem from="1715589588564" duration="14015000" />
+      <workItem from="1715760739465" duration="10986000" />
+      <workItem from="1715849402762" duration="14292000" />
+      <workItem from="1715947506289" duration="1932000" />
+      <workItem from="1715954326215" duration="30795000" />
+      <workItem from="1716276857598" duration="664000" />
+      <workItem from="1716277532785" duration="26579000" />
+      <workItem from="1716479851717" duration="114000" />
+      <workItem from="1716479988756" duration="1367000" />
+      <workItem from="1716814508786" duration="10278000" />
+      <workItem from="1716888036623" duration="15126000" />
+      <workItem from="1716911127319" duration="17596000" />
+      <workItem from="1716964855681" duration="1392000" />
+      <workItem from="1716969327882" duration="7950000" />
+      <workItem from="1717048984245" duration="2932000" />
+      <workItem from="1717054747380" duration="39564000" />
+      <workItem from="1717261689703" duration="2787000" />
+      <workItem from="1717317826712" duration="25000" />
+      <workItem from="1717413109767" duration="1749000" />
+      <workItem from="1717527542699" duration="1227000" />
+      <workItem from="1717574177796" duration="4337000" />
+      <workItem from="1717583140199" duration="4615000" />
+      <workItem from="1717660780582" duration="2325000" />
+      <workItem from="1717674548503" duration="6866000" />
+      <workItem from="1717768238355" duration="4388000" />
+      <workItem from="1717787195181" duration="468000" />
+      <workItem from="1717798934785" duration="4260000" />
+      <workItem from="1717865866993" duration="7993000" />
+      <workItem from="1718016944561" duration="3637000" />
+      <workItem from="1718044724809" duration="5315000" />
+      <workItem from="1718096527561" duration="1730000" />
+      <workItem from="1718191622988" duration="5692000" />
+      <workItem from="1718269514966" duration="1239000" />
+      <workItem from="1718985516965" duration="345000" />
+      <workItem from="1719141936860" duration="46000" />
+      <workItem from="1719142004450" duration="11579000" />
+      <workItem from="1719296836448" duration="1659000" />
+      <workItem from="1719320078971" duration="10088000" />
+      <workItem from="1719419226213" duration="601000" />
+      <workItem from="1719506921374" duration="1506000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/app/Http/Requests/UpdatePetRequest.php</url>
-          <line>15</line>
-          <option name="timeStamp" value="60" />
+          <url>file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Http/Request.php</url>
+          <line>563</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/app/Http/Requests/StoreAddressRequest.php</url>
+          <line>25</line>
+          <option name="timeStamp" value="57" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/app/Http/Requests/UpdateVaccineRequest.php</url>
+          <line>25</line>
+          <option name="timeStamp" value="59" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="phpunit">
+        <watch expression="$response-&gt;baseResponse-&gt;content()" language="PHP" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>
