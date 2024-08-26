@@ -165,41 +165,41 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "PHPUnit.Main.executor": "Run",
-    "PHPUnit.PetTest.updates_a_pet.executor": "Debug",
-    "PHPUnit.UserTest.can_access_authenticated_route.executor": "Debug",
-    "PHPUnit.UserTest.can_login_with_valid_credentials (1).executor": "Debug",
-    "PHPUnit.UserTest.can_login_with_valid_credentials.executor": "Debug",
-    "PHPUnit.UserTest.createUser.executor": "Run",
-    "PHPUnit.UserTest.create_new_user.executor": "Debug",
-    "PHPUnit.UserTest.deleteUser.executor": "Debug",
-    "PHPUnit.UserTest.executor": "Run",
-    "PHPUnit.UserTest.modify_role.executor": "Debug",
-    "PHPUnit.UserTest.owner_cannot_create_new_user.executor": "Debug",
-    "PHPUnit.UserTest.register_new_user.executor": "Debug",
-    "PHPUnit.UserTest.show_one_user.executor": "Debug",
-    "PHPUnit.VaccinationTest.create_new_vaccination.executor": "Run",
-    "PHPUnit.VaccinationTest.updates_a_vaccination.executor": "Debug",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.laravel-idea.update-module-directories": "true",
-    "git-widget-placeholder": "Prueba-entorno-pasado",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.sourceCode.MySQL, MariaDB",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;PHPUnit.Main.executor&quot;: &quot;Run&quot;,
+    &quot;PHPUnit.PetTest.updates_a_pet.executor&quot;: &quot;Debug&quot;,
+    &quot;PHPUnit.UserTest.can_access_authenticated_route.executor&quot;: &quot;Debug&quot;,
+    &quot;PHPUnit.UserTest.can_login_with_valid_credentials (1).executor&quot;: &quot;Debug&quot;,
+    &quot;PHPUnit.UserTest.can_login_with_valid_credentials.executor&quot;: &quot;Debug&quot;,
+    &quot;PHPUnit.UserTest.createUser.executor&quot;: &quot;Run&quot;,
+    &quot;PHPUnit.UserTest.create_new_user.executor&quot;: &quot;Debug&quot;,
+    &quot;PHPUnit.UserTest.deleteUser.executor&quot;: &quot;Debug&quot;,
+    &quot;PHPUnit.UserTest.executor&quot;: &quot;Run&quot;,
+    &quot;PHPUnit.UserTest.modify_role.executor&quot;: &quot;Debug&quot;,
+    &quot;PHPUnit.UserTest.owner_cannot_create_new_user.executor&quot;: &quot;Debug&quot;,
+    &quot;PHPUnit.UserTest.register_new_user.executor&quot;: &quot;Debug&quot;,
+    &quot;PHPUnit.UserTest.show_one_user.executor&quot;: &quot;Debug&quot;,
+    &quot;PHPUnit.VaccinationTest.create_new_vaccination.executor&quot;: &quot;Run&quot;,
+    &quot;PHPUnit.VaccinationTest.updates_a_vaccination.executor&quot;: &quot;Debug&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.laravel-idea.update-module-directories&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Prueba-entorno-pasado&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.MySQL, MariaDB&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
-      "TEXT"
+  &quot;keyToStringList&quot;: {
+    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
+      &quot;TEXT&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="PHPUnit.Main">
     <configuration default="true" type="ComposerRunConfigurationType" factoryName="Composer Script">
       <option name="pathToComposerJson" value="$PROJECT_DIR$/composer.json" />
