@@ -1,24 +1,68 @@
+# Laravel default ignores
+/vendor
+/node_modules
+/public/hot
+/public/storage
+/storage/*.key
+/storage/framework/*
+/storage/logs/*
+/.env
+/.env.backup
+/.env.example.backup
+/.phpunit.result.cache
+
+# Ignore IDE and system-specific files
+/.idea/
+/*.iml
+/.vscode/
+/nbproject/
+/.DS_Store
+Thumbs.db
+
+# PhpStorm specific
+.idea/
+/.idea/*
+
+# Ignore PhpStorm project files
+.idea/*
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/usage.statistics.xml
+.idea/dictionaries
+.idea/shelf
+.idea/misc.xml
+
+# Ignore compiled class files
 /vendor/
+/bootstrap/cache/
+
+# Ignore environment files
+/.env
+.env.*
+.env.*.local
+
+# Ignore SFTP configuration files (if any)
+/.sftp-config.json
+/.vscode/sftp.json
+
+# Ignore Laravel Mix files
+/public/mix-manifest.json
+/public/hot
+
+# Ignore yarn & npm
 node_modules/
-npm-debug.log
-yarn-error.log
+/yarn-error.log
+yarn.lock
 
-# Laravel 4 specific
-bootstrap/compiled.php
-app/storage/
+# Ignore Laravel Telescope
+/storage/telescope
 
-# Laravel 5 & Lumen specific
-public/storage
-public/hot
+# Ignore Jetstream files
+/public/js
+/public/css
 
-# Laravel 5 & Lumen specific with changed public path
-public_html/storage
-public_html/hot
+# Ignore Composer dependencies
+/vendor/
 
-storage/*.key
-.env
-Homestead.yaml
-Homestead.json
-/.vagrant
-.phpunit.result.cache
-/.idea
+# Ignore cache files
+/cache/
