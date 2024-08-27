@@ -33,7 +33,7 @@ class StorePetRequest extends FormRequest
             'chip_position' => 'nullable|string|max:255',
             'user_id' => 'required|integer|exists:App\Models\User,id',
             'breed_id' => 'required|integer|exists:App\Models\Breed,id',
-            'image' => 'nullable|image|mimes:jpeg,png,svg|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,svg|max:10120',
         ];
     }
 }

@@ -66,3 +66,8 @@ yarn.lock
 
 # Ignore cache files
 /cache/
+/storage
+.DS_Store
+.DS_Store
+/.idea
+/app

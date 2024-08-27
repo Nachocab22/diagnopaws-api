@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Models\Breed;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class PetController extends Controller
 {
@@ -82,6 +83,16 @@ class PetController extends Controller
     {
         try {
             $pet->fill($request->validated());
+
+            if ($request->hasFile('image')) {
+                if ($pet->image) {
+                    Storage::disk('public')->delete($pet->image);
+                }
+
+                $path = $request->file('image')->store('pets', 'public');
+
+                $pet->image = $path;
+            }
             $pet->save();
             return response()->json(['pet' => new PetResource($pet)], 200);
         } catch (\Exception $e) {
