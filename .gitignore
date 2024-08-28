@@ -71,3 +71,4 @@ yarn.lock
 .DS_Store
 /.idea
 /app
+.idea/workspace.xml
